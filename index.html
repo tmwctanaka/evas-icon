@@ -13,8 +13,6 @@
 <link rel="apple-touch-icon" href="https://tmwctanaka.github.io/evas-icon/apple-touch-icon.png">
 <link rel="icon" type="image/png" href="https://tmwctanaka.github.io/evas-icon/apple-touch-icon.png">
 
-<meta http-equiv="refresh" content="0; url=https://script.google.com/macros/s/AKfycbxMsy1AWitxus1LrSToAvjAV3GZeVOtsxJfjeBaO-cFR6wcVMro2wAjCFKgSYjC2cjJ4w/exec">
-
 <style>
 html, body {
   margin: 0;
@@ -25,24 +23,66 @@ html, body {
   background: #f4f8fb;
 }
 
-body {
+.wrapper {
   display: flex;
   align-items: center;
   justify-content: center;
+  height: 100%;
+}
+
+.card {
+  text-align: center;
+  padding: 32px;
+}
+
+h1 {
+  font-size: 40px;
+  color: #2f3b45;
+  margin-bottom: 16px;
 }
 
 p {
-  font-size: 18px;
+  font-size: 20px;
   color: #555;
+  margin-bottom: 28px;
+}
+
+a.button {
+  display: inline-block;
+  font-size: 24px;
+  font-weight: bold;
+  color: white;
+  background: #2f80d0;
+  padding: 16px 32px;
+  border-radius: 12px;
+  text-decoration: none;
 }
 </style>
 </head>
 
 <body>
-<p>eVASを起動しています...</p>
+<div class="wrapper">
+  <div class="card">
+    <h1>eVAS</h1>
+    <p>疼痛評価アプリを起動します。</p>
+    <a class="button" href="https://script.google.com/macros/s/AKfycbxMsy1AWitxus1LrSToAvjAV3GZeVOtsxJfjeBaO-cFR6wcVMro2wAjCFKgSYjC2cjJ4w/exec">
+      eVASを開く
+    </a>
+  </div>
+</div>
 
 <script>
-window.location.replace("https://script.google.com/macros/s/AKfycbxMsy1AWitxus1LrSToAvjAV3GZeVOtsxJfjeBaO-cFR6wcVMro2wAjCFKgSYjC2cjJ4w/exec");
+const APP_URL = "https://script.google.com/macros/s/AKfycbxMsy1AWitxus1LrSToAvjAV3GZeVOtsxJfjeBaO-cFR6wcVMro2wAjCFKgSYjC2cjJ4w/exec";
+
+// ホーム画面アイコンから起動された場合のみ、自動でApps Scriptへ移動する。
+// Safariで通常表示しているときは移動しないため、ホーム画面追加時にGitHub Pages側のアイコンを拾いやすい。
+const isStandalone =
+  window.navigator.standalone === true ||
+  window.matchMedia("(display-mode: standalone)").matches;
+
+if (isStandalone) {
+  window.location.replace(APP_URL);
+}
 </script>
 
 </body>
